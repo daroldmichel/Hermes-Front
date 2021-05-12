@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hermes - Cadastro de Usuário</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/bulma-extensions.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-mobile">
+        <div class="column is-half is-offset-one-quarter">
+          <h1 class="title">
+            Hermes
+          </h1>
+          <p class="subtitle">
+            Cadastro de Usuário
+          </p>
+            <form class="box" action="/cad_usuario" method="post">
+                <div class="field">
+                  <label class="label">Nome</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="nomeusuario">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Login</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="login">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Email</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="email" name="email">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Telefone</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="telefone">
+                  </div>
+                </div>
+              
+                <div class="field">
+                  <label class="label">Senha</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="password" name="senha" placeholder="********">
+                  </div>
+                </div>
+              
+                <div class="field">
+                  <label class="label">Confirmação de Senha</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="password" name="confirma_senha" placeholder="********">
+                  </div>
+                </div>
+                <div class="field">
+                  <input id="ativo" type="checkbox" name="ativo" class="switch is-rounded is-info is-medium" checked="checked">
+                  <label for="ativo">Usuário Ativo</label>
+                </div>
+                <button class="button is-info is-fullwidth is-medium is-rounded">Concluir</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  </body>
+</html>

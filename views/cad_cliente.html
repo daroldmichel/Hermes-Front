@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hermes - Cadastro de Cliente</title>
+    <link rel="stylesheet" href="css/bulma.min.css">
+    <link rel="stylesheet" href="css/bulma-extensions.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-mobile">
+        <div class="column is-half is-offset-one-quarter">
+          <h1 class="title">
+            Hermes
+          </h1>
+          <p class="subtitle">
+            Cadastro de Cliente
+          </p>
+            <form class="box" action="/cad_cliente" method="post">
+                <div class="field">
+                  <label class="label">Nome</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="nomecliente">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">CNPJ</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="cnpj">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Inscrição Estadual</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="ie">
+                  </div>
+                </div>
+                <div class="field">
+                    <label class="label">Telefone</label>
+                    <div class="control">
+                        <input class="input is-medium is-rounded" type="text" name="telefone">
+                    </div>
+                </div>
+                <div class="field">
+                  <label class="label">Email</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="email" name="email">
+                  </div>
+                </div>
+                <div class="field">
+                    <label class="label">UF</label>
+                    <div class="control">
+                        <input class="input is-medium is-rounded" type="text" name="uf">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Endereço</label>
+                    <div class="control">
+                        <input class="input is-medium is-rounded" type="text" name="endereco">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Número</label>
+                    <div class="control">
+                        <input class="input is-medium is-rounded" type="number" name="numero">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">CEP</label>
+                    <div class="control">
+                        <input class="input is-medium is-rounded" type="text" name="cep">
+                    </div>
+                </div>
+                <div class="field">
+                  <input id="ativo" type="checkbox" name="ativo" class="switch is-rounded is-info is-medium" checked="checked">
+                  <label for="ativo">Cliente Ativo</label>
+                </div>
+                <button class="button is-info is-fullwidth is-medium is-rounded">Concluir</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  </body>
+</html>
