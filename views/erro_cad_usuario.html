@@ -15,6 +15,9 @@
             <div class="column">
                 <a href= "/menu" class="button is-info is-medium is-rounded">Menu</a>
             </div>
+            <div class="notification is-danger" id="mensagem">
+                <%=mensagem%>
+            </div>
           <p class="subtitle">
             Cadastro de Usuário
           </p>
@@ -47,7 +50,7 @@
                 <div class="field">
                   <label class="label">Senha *</label>
                   <div class="control">
-                    <input class="input is-medium is-rounded" type="password" id="senha" name="senha" placeholder="********">
+                    <input class="input is-medium is-rounded" type="password" id="senha" name="senha" placeholder="Digite a senha Novamente">
                   </div>
                 </div>
               
@@ -68,47 +71,67 @@
     </div>
   </section>
   <script>
-      function validarSenha(){
-          obrigatorios = false;
-          if(!(formulario.nomeusuario.value)){
-              formulario.nomeusuario.classList.add('is-danger');
-              obrigatorios = true;
-          }else{
-              formulario.nomeusuario.classList.remove('is-danger');
-          }
-          if(!(formulario.login.value)){
-              formulario.login.classList.add('is-danger');
-              obrigatorios = true;
-          }else{
-              formulario.login.classList.remove('is-danger');
-          }
-          if(!(formulario.senha.value)){
-              formulario.senha.classList.add('is-danger');
-              obrigatorios = true;
-          }else{
-              formulario.senha.classList.remove('is-danger');
-          }
-          if(!(formulario.confirma_senha.value)){
-              formulario.confirma_senha.classList.add('is-danger');
-              obrigatorios = true;
-          }else{
-              formulario.confirma_senha.classList.remove('is-danger');
-          }
-          if(obrigatorios){
-              alert("Campos obrigatórios não foram informados!");
-              return false
-          }
-          senha = formulario.senha.value;
-          cSenha = formulario.confirma_senha.value;
+    nomeusuario = `<%=nomeusuario%>`;
+    login = `<%=login%>`;
+    telefone = `<%=telefone%>`;
+    email = `<%=email%>`;
+    ativo = `<%=ativo%>`;
+    msg_fix = 'Erro desconhecido no Servidor!';
+    msg = `<%=mensagem%>`;
 
-          if (senha !== cSenha){
-              alert("Senhas informadas estão divergente!");
-              formulario.senha.classList.add('is-danger');
-              formulario.confirma_senha.classList.add('is-danger')
-              return false;
-          }
-          return true;
-      }
+    if(msg !== msg_fix){
+        formulario.login.classList.add('is-danger');
+    };
+
+    formulario.nomeusuario.value = nomeusuario;
+    formulario.login.value = login;
+    formulario.telefone.value = telefone;
+    formulario.email.value = email;
+    formulario.ativo.value = ativo;
+
+    function validarSenha(){
+        obrigatorios = false;
+        if(!(formulario.nomeusuario.value)){
+            formulario.nomeusuario.classList.add('is-danger');
+            obrigatorios = true;
+        }else{
+            formulario.nomeusuario.classList.remove('is-danger');
+        }
+        if(!(formulario.login.value)){
+            formulario.login.classList.add('is-danger');
+            obrigatorios = true;
+        }else{
+            formulario.login.classList.remove('is-danger');
+        }
+        if(!(formulario.senha.value)){
+            formulario.senha.classList.add('is-danger');
+            obrigatorios = true;
+        }else{
+            formulario.senha.classList.remove('is-danger');
+        }
+        if(!(formulario.confirma_senha.value)){
+            formulario.confirma_senha.classList.add('is-danger');
+            obrigatorios = true;
+        }else{
+            formulario.confirma_senha.classList.remove('is-danger');
+        }
+        if(obrigatorios){
+            alert("Campos obrigatórios não foram informados!");
+            return false
+        }
+
+        senha = formulario.senha.value;
+        cSenha = formulario.confirma_senha.value;
+        console.log(senha);
+        console.log(cSenha);
+        if (senha != cSenha){
+            alert("Senhas informadas estão divergente!");
+            formulario.senha.classList.add('is-danger');
+            formulario.confirma_senha.classList.add('is-danger')
+            return false;
+        }
+        return true;
+    }
 
   </script>
   </body>

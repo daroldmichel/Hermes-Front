@@ -15,10 +15,13 @@
             <div class="column">
                 <a href= "/menu" class="button is-info is-medium is-rounded">Menu</a>
             </div>
+            <div class="notification is-danger" id="mensagem">
+                <%=mensagem%>
+            </div>
           <p class="subtitle">
             Cadastro de Cliente
           </p>
-            <form class="box" action="/cad_cliente" id="formulario" method="post" onsubmit="return validarObrigatorios();">
+            <form class="box" action="/cad_cliente" method="post" id="formulario" onsubmit="return validarObrigatorios();">
                 <div class="field">
                   <label class="label">Nome *</label>
                   <div class="control">
@@ -108,6 +111,25 @@
     </div>
   </section>
   <script>
+      nomecliente = `<%=nomecliente%>`;
+      cnpj = `<%=cnpj%>`;
+      ie = `<%=ie%>`;
+      telefone = `<%=telefone%>`;
+      uf = `<%=uf%>`;
+      endereco = `<%=endereco%>`;
+      numero = `<%=numero%>`;
+      cep = `<%=cep%>`;
+      ativo = `<%=ativo%>`;
+
+      formulario.nomecliente.value = nomecliente;
+      formulario.cnpj.value = cnpj;
+      formulario.ie.value = ie;
+      formulario.telefone.value = telefone;
+      formulario.uf.value = uf;
+      formulario.endereco.value = endereco;
+      formulario.numero.value = numero;
+      formulario.cep.value = cep;
+      formulario.ativo.value = ativo;
       function validarObrigatorios(){
           obrigatorios = false;
           if(!(formulario.nomecliente.value)){
@@ -158,6 +180,7 @@
           }
           return true;
       }
+
   </script>
   </body>
 </html>

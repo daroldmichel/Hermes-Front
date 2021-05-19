@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hermes - Home</title>
+    <link rel="stylesheet" href="/bulma/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="columns is-mobile is-multiline">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="column">
+                    <a href= "/menu" class="button is-info is-medium is-rounded">Menu</a>
+                </div>
+                <p class="title">
+                    Histórico de Monitoramento
+                </p>
+                <div class="box">
+                    <% for (banco of bancos){%>
+                    <div class="box">
+                        <div class="columns is-gapless is-vcentered">
+                            <div class="column">
+                                <p class="subtitle">
+                                    <%= banco.nomebanco %>
+                                </p>
+                                IP: <%= banco.ip %>
+                                Porta: <%= banco.porta %>
+                            </div>
+                        </div>
+                        <% for (monitoramento of banco.monitoramento){%>
+                        <div class="box">
+                            <div class="columns is-gapless is-vcentered">
+                                <h1 >
+                                    <%= monitoramento.status %>
+                                </h1>
+                            </div>
+                            <div class="columns is-gapless is-vcentered">
+                                Última Verificação: <%= monitoramento.dtmonitoramento %>
+                            </div>
+                            <div class="column">
+                                Hora Início: <%= monitoramento.dhinicial %>
+                                <br>
+                                Hora Fim: <%= monitoramento.dhfinal %>
+                            </div>
+                            <div class="column">
+                                Usuário: <%= monitoramento.usuario %>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+</script>
+</body>
+</html>

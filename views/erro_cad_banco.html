@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hermes - Cadastro de Bancos</title>
+    <link rel="stylesheet" href="/bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="/bulma/css/bulma-extensions.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-mobile">
+        <div class="column is-half is-offset-one-quarter">
+            <div class="column">
+                <a href= "/menu" class="button is-info is-medium is-rounded">Menu</a>
+            </div>
+            <div class="notification is-danger" id="mensagem">
+                <%=mensagem%>
+            </div>
+          <p class="subtitle">
+            Cadastro de Bancos
+          </p>
+            <form class="box" action="/cad_banco" method="post" id="formulario" onsubmit="return validarObrigatorios();">
+                <div class="field">
+                  <label class="label">Nome *</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="nomebanco">
+                  </div>
+                </div>
+                <div class="field">
+                    <label class="label">Tipo *</label>
+                    <div class="control">
+                        <div class="select is-medium is-fullwidth is-rounded">
+                            <select name="tipo">
+                                <option value="1">IBM DB2</option>
+                                <option value="2">Postgres</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Protocolo *</label>
+                    <div class="control">
+                        <div class="select is-medium is-fullwidth is-rounded">
+                            <select name="protocolo">
+                                <option value="TCPIP">TCPIP</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                  <label class="label">IP *</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="ip">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Porta *</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="porta">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Usuário *</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="text" name="usuario">
+                  </div>
+                </div>
+              
+                <div class="field">
+                  <label class="label">Senha *</label>
+                  <div class="control">
+                    <input class="input is-medium is-rounded" type="password" name="senha" placeholder="Digite a senha novamente">
+                  </div>
+                </div>
+                <div class="field">
+                    <input id="tls" type="checkbox" name="tls" class="switch is-rounded is-info is-medium">
+                    <label for="tls">Conexão TLS</label>
+                </div>
+                <div class="field">
+                  <input id="ativo" type="checkbox" name="ativo" class="switch is-rounded is-info is-medium" checked="checked">
+                  <label for="ativo">Banco Ativo</label>
+                </div>
+                <button class="button is-info is-fullwidth is-medium is-rounded">Cadastrar</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+      nomebanco = `<%=nomebanco%>`;
+      tipo = `<%=tipo%>`;
+      protocolo = `<%=protocolo%>`;
+      ip = `<%=ip%>`;
+      porta = `<%=porta%>`;
+      usuario = `<%=usuario%>`;
+      tls = `<%=tls%>`;
+      ativo = `<%=ativo%>`;
+
+      formulario.nomebanco.value = nomebanco;
+      formulario.tipo.value = tipo;
+      formulario.protocolo.value = protocolo;
+      formulario.ip.value = ip;
+      formulario.porta.value = porta;
+      formulario.usuario.value = usuario;
+      formulario.tls.value = tls;
+      formulario.ativo.value = ativo;
+
+      function validarObrigatorios(){
+          obrigatorios = false;
+          if(!(formulario.nomebanco.value)){
+              formulario.nomebanco.classList.add('is-danger');
+              obrigatorios = true;
+          }else{
+              formulario.nomebanco.classList.remove('is-danger');
+          }
+          if(!(formulario.tipo.value)){
+              formulario.tipo.classList.add('is-danger');
+              obrigatorios = true;
+          }else{
+              formulario.tipo.classList.remove('is-danger');
+          }
+          if(!(formulario.protocolo.value)){
+              formulario.protocolo.classList.add('is-danger');
+              obrigatorios = true;
+          }else{
+              formulario.protocolo.classList.remove('is-danger');
+          }
+          if(!(formulario.ip.value)){
+              formulario.ip.classList.add('is-danger');
+              obrigatorios = true;
+          }else{
+              formulario.ip.classList.remove('is-danger');
+          }
+          if(!(formulario.porta.value)){
+              formulario.porta.classList.add('is-danger');
+              obrigatorios = true;
+          }else{
+              formulario.porta.classList.remove('is-danger');
+          }
+          if(!(formulario.usuario.value)){
+              formulario.usuario.classList.add('is-danger');
+              obrigatorios = true;
+          }else{
+              formulario.usuario.classList.remove('is-danger');
+          }
+          if(!(formulario.senha.value)){
+              formulario.senha.classList.add('is-danger');
+              obrigatorios = true;
+          }else{
+              formulario.senha.classList.remove('is-danger');
+          }
+          if(obrigatorios){
+              alert("Campos obrigatórios não foram informados!");
+              return false
+          }
+          return true;
+      }
+
+  </script>
+  </body>
+</html>

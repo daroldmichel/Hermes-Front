@@ -1,19 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-
-
-    <title>Hermes - Início</title>
+    <title>Hermes - Home</title>
+    <link rel="stylesheet" href="/bulma/css/bulma.min.css">
 </head>
 <body>
-    <h2>VOCE ESTA LOGADO <%=login%></h2>
-    <a class="btn btn-primary" href="/cad_usuario" role="button">Cadastro de Usuários</a>
+<section class="section">
+    <div class="container">
+        <div class="columns is-mobile is-multiline">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="column">
+                    <a href= "/menu" class="button is-info is-medium is-rounded">Menu</a>
+                </div>
+                <div class="notification is-success" id="mensagem">
+                    <button class="delete"></button>
+                    <%=mensagem%>
+                </div>
+                <div class="box">
+                    <p class="subtitle">
+                        Bem Vindo, <strong>Usuário <%=login%></strong>!
+                    </p>
+                    <% if(monitoramentos) {%>
+                    <div class="box">
+                        <p class="subtitle">
+                            <strong>Bancos Indisponíveis!</strong>
+                        </p>
+                        <% for (monitoramento of monitoramentos){%>
+                        <div class="box">
+                            <div class="columns is-gapless is-vcentered">
+                                <div class="column">
+                                    <p class="subtitle">
+                                        <%= monitoramento.banco.nomebanco %>
+                                    </p>
+                                    IP: <%= monitoramento.banco.ip %>
+                                    Porta: <%= monitoramento.banco.porta %>
+                                </div>
+                                <div class="column is-two-fifths">
+                                    Ultima Verificação: <%= monitoramento.dtmonitoramento %>
+                                    <br>
+                                    Ultima vez Online: <%= monitoramento.dhinicial %>
+                                </div>
+                                <div class="column is-one-fifth">
+                                    <a href= "/alocar/<%= monitoramento.idmonitoramento %>" class="button is-success is-warning is-right is-rounded">Verificar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    var msg, tipo;
+    msg = `<%=mensagem%>`;
+    tipo = `<%=tipo%>`;
+    if(tipo==1){
+        mensagem.classList.add('is-sucess');
+        mensagem.classList.remove('is-danger');
+    }else{
+        mensagem.classList.add('is-danger');
+        mensagem.classList.remove('is-sucess');
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
+    });
+
+    function deletarNotificacao(){
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+            $notification.parentNode.removeChild($notification);
+        });
+    }
+
+    if (!(msg)){
+        deletarNotificacao();
+    }else{
+        setTimeout(function() {deletarNotificacao()},5000);
+    }
+
+    function home(){
+        window.location.href = "index";
+    }
+
+    setTimeout(function() {home()},8000);
+
+    function play() {
+        var audio = new Audio('/bulma/sound/nuclear.mp3');
+        console.log('nuclear');
+        audio.play();
+        audio.stop();
+    }
+    var tocar = false;
+    `<% for (monitoramento of monitoramentos){%>`
+    tocar = true;
+    `<% } %>`
+    if(tocar){
+        play();
+    }
+
+
+</script>
 </body>
 </html>

@@ -16,9 +16,15 @@
                 <a href= "/menu" class="button is-info is-medium is-rounded">Menu</a>
             </div>
           <p class="subtitle">
-            Cadastro de Cliente
+              Editando Cadastro do Cliente: <%=nomecliente%>
           </p>
-            <form class="box" action="/cad_cliente" id="formulario" method="post" onsubmit="return validarObrigatorios();">
+            <form class="box" action="/cad_cliente" method="post" id="formulario" onsubmit="return validarObrigatorios();">
+                <div class="field">
+                    <label class="label">ID</label>
+                    <div class="control">
+                        <input class="input is-medium is-rounded" type="number" name="idcliente" disabled>
+                    </div>
+                </div>
                 <div class="field">
                   <label class="label">Nome *</label>
                   <div class="control">
@@ -101,13 +107,38 @@
                   <input id="ativo" type="checkbox" name="ativo" class="switch is-rounded is-info is-medium" checked="checked">
                   <label for="ativo">Cliente Ativo</label>
                 </div>
-                <button class="button is-info is-fullwidth is-medium is-rounded">Cadastrar</button>
+                <button class="button is-info is-fullwidth is-medium is-rounded">Gravar</button>
             </form>
         </div>
       </div>
     </div>
   </section>
   <script>
+      idcliente = `<%=idcliente%>`;
+      nomecliente = `<%=nomecliente%>`;
+      cnpj = `<%=cnpj%>`;
+      ie = `<%=ie%>`;
+      telefone = `<%=telefone%>`;
+      uf = `<%=uf%>`;
+      endereco = `<%=endereco%>`;
+      numero = `<%=numero%>`;
+      cep = `<%=cep%>`;
+      ativo = `<%=ativo%>`;
+      if(ativo=='false'){
+          formulario.ativo.removeAttribute('checked');
+      }
+
+      formulario.action= '/cad_cliente/' + idcliente;
+
+      formulario.idcliente.value = idcliente;
+      formulario.nomecliente.value = nomecliente;
+      formulario.cnpj.value = cnpj;
+      formulario.ie.value = ie;
+      formulario.telefone.value = telefone;
+      formulario.uf.value = uf;
+      formulario.endereco.value = endereco;
+      formulario.numero.value = numero;
+      formulario.cep.value = cep;
       function validarObrigatorios(){
           obrigatorios = false;
           if(!(formulario.nomecliente.value)){
@@ -158,6 +189,7 @@
           }
           return true;
       }
+
   </script>
   </body>
 </html>

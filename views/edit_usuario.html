@@ -16,9 +16,15 @@
                 <a href= "/menu" class="button is-info is-medium is-rounded">Menu</a>
             </div>
           <p class="subtitle">
-            Cadastro de Usuário
+            Editando Cadastro do Usuário: <%=nomeusuario%>
           </p>
-            <form class="box" action="/cad_usuario" method="post" id="formulario" onsubmit="return validarSenha();">
+            <form class="box" action="" method="post" id="formulario" onsubmit="return validarSenha();">
+                <div class="field">
+                    <label class="label">ID</label>
+                    <div class="control">
+                        <input class="input is-medium is-rounded" type="number" name="idusuario" disabled>
+                    </div>
+                </div>
                 <div class="field">
                   <label class="label">Nome *</label>
                   <div class="control">
@@ -26,9 +32,9 @@
                   </div>
                 </div>
                 <div class="field">
-                  <label class="label">Login *</label>
+                  <label class="label">Login</label>
                   <div class="control">
-                    <input class="input is-medium is-rounded" type="text" name="login">
+                    <input class="input is-medium is-rounded" type="text" name="login" disabled>
                   </div>
                 </div>
                 <div class="field">
@@ -61,13 +67,31 @@
                   <input id="ativo" type="checkbox" name="ativo" class="switch is-rounded is-info is-medium" checked="checked">
                   <label for="ativo">Usuário Ativo</label>
                 </div>
-                <button type="submit" class="button is-info is-fullwidth is-medium is-rounded">Cadastrar</button>
+                <button type="submit" class="button is-info is-fullwidth is-medium is-rounded">Gravar</button>
             </form>
         </div>
       </div>
     </div>
   </section>
   <script>
+      idusuario = `<%=idusuario%>`;
+      nomeusuario = `<%=nomeusuario%>`;
+      login = `<%=login%>`;
+      telefone = `<%=telefone%>`;
+      email = `<%=email%>`;
+      ativo = `<%=ativo%>`;
+      if(ativo=='false'){
+          formulario.ativo.removeAttribute('checked');
+      }
+
+      formulario.idusuario.value = idusuario;
+      formulario.nomeusuario.value = nomeusuario;
+      formulario.login.value = login;
+      formulario.telefone.value = telefone;
+      formulario.email.value = email;
+
+      formulario.action= '/cad_usuario/' + idusuario;
+
       function validarSenha(){
           obrigatorios = false;
           if(!(formulario.nomeusuario.value)){
@@ -100,13 +124,14 @@
           }
           senha = formulario.senha.value;
           cSenha = formulario.confirma_senha.value;
-
-          if (senha !== cSenha){
+          if (senha != cSenha){
               alert("Senhas informadas estão divergente!");
               formulario.senha.classList.add('is-danger');
               formulario.confirma_senha.classList.add('is-danger')
               return false;
           }
+          formulario.idusuario.disabled = false;
+          formulario.login.disabled = false;
           return true;
       }
 

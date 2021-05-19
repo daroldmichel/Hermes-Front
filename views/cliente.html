@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hermes - Bancos</title>
+    <title>Hermes - Clientes</title>
     <link rel="stylesheet" href="/bulma/css/bulma.min.css">
 </head>
 <body>
@@ -18,39 +18,31 @@
                     <div class="columns is-gapless is-vcentered">
                         <div class="column">
                             <p class="title">
-                                Bancos
+                                Clientes
                             </p>
                         </div>
                         <div class="has-addons is-right">
-                            <a href= "/cad_banco" class="button is-info is-normal is-right is-rounded">Novo Banco</a>
+                            <a href= "/cad_cliente" class="button is-info is-normal is-right is-rounded">Novo Cliente</a>
                         </div>
                     </div>
-                    <% for (banco of bancos){%>
+                    <% for (cliente of clientes){%>
                         <div class="box">
                             <div class="columns is-gapless is-vcentered">
                                 <div class="column">
                                     <p class="subtitle">
-                                        <%= banco.nomebanco %>
+                                        <%= cliente.nomecliente %>
                                     </p>
-                                    IP: <%= banco.ip %>
-                                    Porta: <%= banco.porta %>
+                                    CNPJ: <%= cliente.cnpj %>
                                 </div>
                                 <div class="column is-one-fifth">
-                                    <%if (banco.ativo){%>
+                                    <%if (cliente.ativo){%>
                                     <button class="button  is-small is-success is-rounded " disabled>Ativo</button>
                                     <% } else { %>
                                     <button class="button  is-small is-danger is-rounded " disabled>Inativo</button>
                                     <% } %>
                                 </div>
                                 <div class="column is-one-fifth">
-                                    <%if (banco.tls){%>
-                                    <button class="button  is-small is-success is-rounded " disabled>TLS</button>
-                                    <% } else { %>
-                                    <button class="button  is-small is-danger is-rounded " disabled>TLS</button>
-                                    <% } %>
-                                </div>
-                                <div class="column is-one-fifth">
-                                    <a href= "/cad_banco/<%= banco.idbanco %>" class="button is-success is-normal is-right is-rounded">Editar</a>
+                                    <a href= "/cad_cliente/<%= cliente.idcliente %>" class="button is-success is-normal is-right is-rounded">Editar</a>
                                 </div>
                             </div>
                         </div>
